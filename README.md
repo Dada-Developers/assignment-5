@@ -38,6 +38,7 @@ You can run multiple nodes on different ports to simulate propagation.
 
 Step 1: Start Second Node
 mkdir -p ~/bitcoin-node2
+
 bitcoind -regtest -datadir=~/bitcoin-node2 -port=18445 -rpcport=18446 -daemon
 
 Step 2: Connect Nodes
