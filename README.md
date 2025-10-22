@@ -1,7 +1,7 @@
 # assignment-5
-#Bitcoin Network
+# Bitcoin Network
 
-#Hands-On Lab Guide — Bitcoin Network Deep Dive (Developers)
+# Hands-On Lab Guide — Bitcoin Network Deep Dive (Developers)
 
 **Overview**
 This lab complements the slide deck and speaker notes. It focuses on building and observing a local
@@ -11,7 +11,7 @@ compact filters.
 You will use Bitcoin Core in regtest mode for safety and speed — no need to connect to the real
 Bitcoin network.
 
-#Lab 1 — Setting Up a Local Bitcoin Network
+# Lab 1 — Setting Up a Local Bitcoin Network
 
 Step 1: Initialize Regtest Environment
 bitcoind -regtest -daemon
