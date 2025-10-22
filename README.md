@@ -4,6 +4,7 @@
 # Hands-On Lab Guide — Bitcoin Network Deep Dive (Developers)
 
 **Overview**
+
 This lab complements the slide deck and speaker notes. It focuses on building and observing a local
 Bitcoin network, understanding transaction propagation, mempool behavior, and experimenting with
 compact filters.
@@ -32,7 +33,7 @@ bitcoin-cli -regtest getblockchaininfo
 Confirms height, difficulty, and network details.
 
 
-**Lab 2 — Running Multiple Nodes (Simulated Network)**
+# Lab 2 — Running Multiple Nodes (Simulated Network)
 You can run multiple nodes on different ports to simulate propagation.
 
 Step 1: Start Second Node
@@ -46,7 +47,7 @@ Step 3: Verify Connection
 bitcoin-cli -regtest getpeerinfo | jq '.[].addr'
 You should see 127.0.0.1:18445 listed.
 
-**Lab 3 — Transaction Propagation and the Mempool**
+# Lab 3 — Transaction Propagation and the Mempool
 
 Step 1: Send a Transaction
 RECV_ADDR=$(bitcoin-cli -regtest getnewaddress)
@@ -66,7 +67,7 @@ TXID=<your_txid>
 bitcoin-cli -regtest gettransaction $TXID
 Expected: confirmations: 1
 
-**Lab 4 — Compact Block Relay (BIP152)**
+# Lab 4 — Compact Block Relay (BIP152)
 
 Objective
 Observe reduced bandwidth during block propagation.
@@ -81,7 +82,7 @@ Step 2: Mine a Block and Observe
 bitcoin-cli -regtest generatetoaddress 1 $ADDRESS
 Watch for compact block announcements in debug logs.
 
-**Lab 5 — Compact Block Filters (BIP157/158)**
+# Lab 5 — Compact Block Filters (BIP157/158)
 
 Step 1: Run a Node with Compact Filter Index
 bitcoind -regtest -daemon -blockfilterindex=1
@@ -95,7 +96,7 @@ Returns filter header and filter data (Golomb-Rice encoded bitstream).
 Step 3: Decode Filter (Optional)
 Install neutrino or btcd client to test SPV-like behavior locally.
 
-**Lab 6 — Merkle Tree Exploration**
+# Lab 6 — Merkle Tree Exploration
 
 Step 1: Get Block Hash
 BLOCK_HASH=$(bitcoin-cli -regtest getbestblockhash)
@@ -113,7 +114,7 @@ root = double_sha256(txids[0] + txids[1])[::-1].hex()
 print(root)
 Matches the block’s merkleroot .
 
-**Lab 7 — Bloom Filters (BIP37)**
+# Lab 7 — Bloom Filters (BIP37)
 
 Step 1: Use bitcoin-cli RPC (legacy)
 bitcoin-cli -regtest setnetworkactive false
@@ -127,7 +128,7 @@ print(bf.bitarray)
 Demonstrate how probabilistic matching works.
 Discussion: Emphasize deprecation due to privacy leaks (clients revealed interests).
 
-**Lab 8 — Observing Consensus Rules**
+# Lab 8 — Observing Consensus Rules
 
 Step 1: Corrupt a Block (for demo only)
 cp ~/.bitcoin/regtest/blocks/blk00000.dat ~/tmp/
@@ -138,7 +139,7 @@ bitcoind -regtest -daemon
 Node rejects the corrupted block → error: bad-blk in logs.
 Lesson: Consensus rules are strict; invalid data is rejected network-wide.
 
-**Lab 9 — Visualizing Peer Connections**
+# Lab 9 — Visualizing Peer Connections
 
 Step 1: View Network Graph
 bitcoin-cli -regtest getpeerinfo | jq '[.[] | {addr, subver, inbound}]'
@@ -148,7 +149,7 @@ Displays peer count, local services, relay fees, and protocol version.
 Tip: Each peer connection is a TCP link exchanging compact messages — similar to sockets in general
 networking.
 
-**Lab 10 — Cleanup**
+# Lab 10 — Cleanup
 
 Stop all nodes:
 bitcoin-cli -regtest stop
